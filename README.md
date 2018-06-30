@@ -1,3 +1,18 @@
+## Using CMAKE to compile and link GLEW (just a note for myself)
+In CMakeLists.txt, add
+```
+find_package(glew 2.1 REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
+link_libraries(${GLEW_LIBRARIES})
+```
+
+In your source code, add
+```
+#define GLEW_STATIC
+#include <GL/glew.h>
+```
+before any other OpenGL libraries are included.
+
 # GLEW - The OpenGL Extension Wrangler Library
 
 The OpenGL Extension Wrangler Library (GLEW) is a cross-platform open-source C/C++ extension loading library. GLEW provides efficient run-time mechanisms for determining which OpenGL extensions are supported on the target platform. OpenGL core and extension functionality is exposed in a single header file. GLEW has been tested on a variety of operating systems, including Windows, Linux, Mac OS X, FreeBSD, Irix, and Solaris.
@@ -17,7 +32,7 @@ https://github.com/nigels-com/glew
 Current release is [2.1.0](https://sourceforge.net/projects/glew/files/glew/2.1.0/).
 [(Change Log)](http://glew.sourceforge.net/log.html)
 
-Sources available as 
+Sources available as
 [ZIP](https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.zip/download) or
 [TGZ](https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download).
 
@@ -68,7 +83,7 @@ RedHat/CentOS/Fedora: `$ sudo yum install libXmu-devel libXi-devel libGL-devel c
 ##### Build
 
 	$ cd build
-	$ cmake ./cmake 
+	$ cmake ./cmake
 	$ make -j4
 
 | Target     | Description |
@@ -114,7 +129,7 @@ Available from [Msys2](http://msys2.github.io/) and/or [Mingw-w64](http://mingw-
 
 Requirements: bash, make, gcc
 
-	$ pacman -S gcc make  mingw-w64-i686-gcc mingw-w64-x86_64-gcc 
+	$ pacman -S gcc make  mingw-w64-i686-gcc mingw-w64-x86_64-gcc
 	$ make
 	$ make install
 	$ make install.all
@@ -125,7 +140,7 @@ Alternative toolchain:  `SYSTEM=msys, SYSTEM=msys-win32, SYSTEM=msys-win64`
 
 `glewinfo` is a command-line tool useful for inspecting the capabilities of an
 OpenGL implementation and GLEW support for that.  Please include `glewinfo.txt`
-with bug reports, as appropriate.	
+with bug reports, as appropriate.
 
 	---------------------------
 	    GLEW Extension Info
@@ -145,7 +160,7 @@ with bug reports, as appropriate.
 	  glDrawRangeElements:                                         OK
 	  glTexImage3D:                                                OK
 	  glTexSubImage3D:                                             OK
-	
+
 	...
 
 ## Code Generation
@@ -173,20 +188,20 @@ with bug fixes, new OpenGL extension support and new releases.
 GLEW was developed by [Milan Ikits](http://www.cs.utah.edu/~ikits/)
 and [Marcelo Magallon](http://wwwvis.informatik.uni-stuttgart.de/~magallon/).
 Aaron Lefohn, Joe Kniss, and Chris Wyman were the first users and also
-assisted with the design and debugging process.  
+assisted with the design and debugging process.
 
 The acronym GLEW originates from Aaron Lefohn.
 Pasi K&auml;rkk&auml;inen identified and fixed several problems with
 GLX and SDL.  Nate Robins created the `wglinfo` utility, to
-which modifications were made by Michael Wimmer.  
+which modifications were made by Michael Wimmer.
 
 ## Copyright and Licensing
 
 GLEW is originally derived from the EXTGL project by Lev Povalahev.
-The source code is licensed under the 
-[Modified BSD License](http://glew.sourceforge.net/glew.txt), the 
+The source code is licensed under the
+[Modified BSD License](http://glew.sourceforge.net/glew.txt), the
 [Mesa 3-D License](http://glew.sourceforge.net/mesa.txt) (MIT) and the
 [Khronos License](http://glew.sourceforge.net/khronos.txt) (MIT).
 
-The automatic code generation scripts are released under the 
+The automatic code generation scripts are released under the
 [GNU GPL](http://glew.sourceforge.net/gpl.txt).
